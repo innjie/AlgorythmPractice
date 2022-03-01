@@ -13,7 +13,7 @@ public class Greedy {
         int answer = 0;
 
 
-        /*
+        /**
             두번째 효율성은 primitive를 object 타입보다 더 빠르게 동작시킬 수 있다.
             --> station index 사용
             Queue<Integer> sq = new LinkedList<>();
@@ -23,10 +23,17 @@ public class Greedy {
          */
 
 
+        /**
+         * java에서 object를 쓰는게 큰 오버헤드가 나오지 않지만
+         * 더 효율적인 프로그램을 만들기 위해서는 primitive를 사용하는것을 권장한다.
+         * 그리고 효율적인 프로그램을 위해서는 항상 루프 먼저 해결하기.
+         */
         int stationIndex = 0;
         int location = 1;
-        /*시간초과는 루프를 의심하기!!!
-        하지만 이 루프는 중간에 뛰기까지 하기때문에 더 줄이기가 어렵다..*/
+        /**
+         * 시간초과는 루프를 의심하기!!!
+         * 하지만 이 루프는 중간에 뛰기까지 하기때문에 더 줄이기가 어렵다..
+         */
 
         while(location <= n) {
             if(stationIndex < stations.length && stations[stationIndex] - w <= location) {
