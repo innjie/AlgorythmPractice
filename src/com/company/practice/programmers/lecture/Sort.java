@@ -1,10 +1,22 @@
 package com.company.practice.programmers.lecture;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Sort {
     public static void main(String[] args) {
         int[] numbers = {6, 10, 2};
+
+        /**
+         * java 8 이상의 추가 기능 --> Stream
+         * 와..이걸어케알지.... 어렵다진짜
+         */
+        String answer2 = IntStream.of(numbers)
+                .mapToObj(String::valueOf)
+                .sorted((o1, o2) -> (o1 + o2).compareTo(o2 + o1))
+                .collect(Collectors.joining());
+
 
         String[] numberToString = new String[numbers.length];
 
@@ -36,7 +48,13 @@ public class Sort {
         for(int j = numberToString.length - 1; j >= 0; j--) {
             answer += numberToString[j];
         }
-        if(answer.charAt(0) == '0') {
+        /**
+         * 문자열의 첫번째 값을 비교할때는 charAt -> startsWith 사용
+         * if(answer.charAt(0) == '0') {
+         *             answer = "0";
+         *         }
+         */
+        if(answer.startsWith("0")) {
             answer = "0";
         }
         System.out.println(answer);
