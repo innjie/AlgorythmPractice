@@ -27,6 +27,12 @@ public class Sort {
             }
         });
 
+        /**
+         * Java 8 d이후의 버전 :: lambda 사용
+         * 어렵다 람다식........ 익숙해져야만
+         */
+        Arrays.sort(numberToString, (o1, o2) -> (o1 + o2).compareTo(o2 + o1));
+
         String answer = "";
         for(int j = numberToString.length - 1; j >= 0; j--) {
             answer += numberToString[j];
