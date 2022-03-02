@@ -18,7 +18,6 @@ public class Sort {
          * reverse는 comperator를 사용해야함 -- 변경코드
          * Arrays.sort(numberToString); -- 기존 코드
          */
-
         Arrays.sort(numberToString, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
