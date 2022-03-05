@@ -4,35 +4,25 @@ import java.util.Arrays;
 
 public class Simulation {
     public static void main(String[] args) {
-        int[] A = {5,1,3,7};
-        int[] B = {2,2,6,8};
+        int[] A = {5, 1, 3, 7};
+        int[] B = {2, 2, 6, 8};
 
         /**
          * 근소한 차이로 이기는 형태 -> B를 먼저 오름차순 정렬
+         * --> 뒤집어서 비교한다면? 안된다면 바로 넘기면된다
          */
+
+        Arrays.sort(A);
         Arrays.sort(B);
-
+        int BIndex = B.length - 1;
         int answer = 0;
-        for(int i = 0; i < A.length; i++) {
-            if(A[i] < B[i]) {
+        for (int i = A.length - 1; i >= 0; i--) {
+            if (A[i] < B[BIndex]) {
                 answer++;
-            } else if(i != A.length - 1){
-                //다음 요소로는 이길수 있는지 확인
-                /*if(A[i] < B[i + 1]) {
-                    answer++;
-                    int temp = B[i + 1];
-                    B[i + 1] = B[i];
-                    B[i] = temp;
-                }*/
-                for(int j = i; j < B.length; j++) {
-                    if(A[i] < B[i + 1]) {
-                        int temp = B[i + 1];
-                        B[i + 1] = B[i];
-                        B[i] = temp;
+                BIndex--;
 
-                    }
-                }
             }
+
         }
         System.out.println(answer);
 
