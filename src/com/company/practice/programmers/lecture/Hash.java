@@ -10,9 +10,11 @@ public class Hash {
 
         HashMap<String, Integer> map = new HashMap<>();
 
+        /**
+         * making map
+         */
         for(String[] cloth : clothes) {
             String val = cloth[1];
-
             if(map.containsKey(val)) {
                 map.put(val, map.get(val) + 1);
             } else {
