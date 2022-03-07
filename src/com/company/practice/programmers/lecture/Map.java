@@ -1,29 +1,69 @@
 package com.company.practice.programmers.lecture;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.stream.IntStream;
 
 public class Map {
     static int[][] dp;
-    static int[][] visited;
+    static int visited[][];
+    static class Position {
+        int x, y;
 
+        public Position(int i, int j) {
+            this.x = i;
+            this.y = j;
+        }
+    }
     public static void main(String[] args) {
         int[][] maps = {{1, 0, 1, 1, 1},
                 {1, 0, 1, 0, 1},
                 {1, 0, 1, 1, 1},
                 {1, 1, 1, 0, 1},
                 {0, 0, 0, 0, 1}};
+        int n = maps.length;
+        int m = maps[0].length;
+        int[][] count = new int[n][m];
+        visited = new int[n][m];
 
-        dp = new int[maps.length][maps[0].length];
-        visited = new int[maps.length][maps[0].length];
-        int m = maps.length;
-        int n = maps[0].length;
-        int i = 0;
-        int j = 0;
+        //bfs : queue
+        // current position
+        Queue<Position> queue = new LinkedList<>();
+        queue.offer(new Position(0, 0));
+        count[0][0] = 1;
+        visited[0][0] = 1;
+        // 상하좌우 칸을 표현하는데 사용할 배열
+        int[] xArr = {-1, 0, 1, 0};
+        int[] yArr = {0, 1, 0, -1};
+        while(!queue.isEmpty()){
+            // 큐에서 노드를 poll
+            Position location = queue.poll();
+            int row = location.x;
+            int col = location.y;
 
+            // 상하좌우 4방향 노드에 대한 작업
+            for(int i = 0 ; i < 4; i++){
+                int x = row + xArr[i];
+                int y = col + yArr[i];
 
-        System.out.println(dp[maps.length - 1][maps[0].length - 1]);
+                if(checkLocation(maps, x, y, n, m)){
+                    // 큐에 인접 노드 추가
+                    queue.add(new Position(x, y));
+                    // 추가한 노드까지의 거리 = 현재 노드까지의 거리 + 1
+                    visited[x][y] = visited[row][col] + 1;
+                }
+            }
+        }
+        System.out.println(visited[n - 1][m - 1]);
 
+    }
+    public static boolean checkLocation(int[][] maps, int row, int col, int n, int m){
+        // 노드가 범위 밖인 경우
+        if(row < 0 || row > n - 1 || col < 0 || col > m - 1) return false;
+        // 이미 방문한 노드인 경우
+        if(visited[row][col] != 0 || maps[row][col] == 0) return false;
+        return true;
     }
     /*
     public static void checkMap(int[][] maps, int i, int j) {
