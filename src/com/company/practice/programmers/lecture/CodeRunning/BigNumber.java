@@ -1,32 +1,60 @@
 package com.company.practice.programmers.lecture.CodeRunning;
 
-public class BigNumber {
-    static int answer = 0;
-    public static void main(String[] args) {
-        String number = "1231234";
-        int k = 3;
+import java.util.Stack;
 
-        int[] bucket = new int[ k];
-        pick(number, bucket, k);
+public class BigNumber {
+    static StringBuilder answer = new StringBuilder();
+    static Stack<Character> stack = new Stack<>();
+    public static void main(String[] args) {
+        String number = "1924";
+        int k = 2;
+
+        int[] bucket = new int[number.length() - k];
+        pick(number, bucket, number.length() - k);
 
         System.out.println(answer);
+        System.out.println("92".compareTo("94"));
+
+        //-------------------
+        StringBuilder stringAnswer = new StringBuilder();
+        int len = number.length() - k;
+        int temp = 0;
+        int index = 0;
+        for(int i = 0; i < len; i++) {
+            int max = 0;
+            for(int j = index; j <= i + k; j++) {
+                int num = number.charAt(j) - '0';
+                if(max < num) {
+                    temp = j;
+                    max = num;
+                }
+            }
+            stringAnswer.append(max);
+            index = temp + 1;
+        }
+        String answerResult = stringAnswer.toString();
+        System.out.println(answerResult);
+
     }
     public static void pick(String number, int[] bucket, int k) {
         if(k == 0) {
             String result = "";
             int bucketIdx = 0;
             for(int i = 0; i < number.length(); i++) {
-                if(i != bucket[bucketIdx]) {
+                if(bucketIdx >= bucket.length) {
+                    bucketIdx = bucket.length - 1;
+                }
+                if(i == bucket[bucketIdx]) {
                     result += number.charAt(i);
-                } else {
-                    if(bucketIdx != bucket.length - 1) {
-                        bucketIdx++;
+                    if(result.length() == answer.length() && result.compareTo(answer.toString()) < 0) {
+                        System.out.println("result : " + result + ", answer: " + answer);
+                        return;
                     }
-
+                    bucketIdx++;
                 }
             }
-            if ((answer < Integer.parseInt(result))) {
-                answer = Integer.parseInt(result);
+            if (result.compareTo(answer.toString()) > 0) {
+                answer.append(result);
             }
             return;
         }

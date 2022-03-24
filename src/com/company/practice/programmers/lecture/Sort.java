@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class Sort {
     public static void main(String[] args) {
-        int[] numbers = {6, 10, 2};
+        int[] numbers = {3, 30, 34, 5, 9};
 
         /**
          * java 8 이상의 추가 기능 --> Stream
@@ -37,6 +37,10 @@ public class Sort {
                 return (o1 + o2).compareTo(o2 + o1);
             }
         });
+
+        for(String str : numberToString) {
+            System.out.print(str + " ");
+        }
 
         /**
          * Java 8 d이후의 버전 :: lambda 사용
