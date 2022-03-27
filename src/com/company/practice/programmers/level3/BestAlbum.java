@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * https://programmers.co.kr/learn/courses/30/lessons/42579?language=java
+ */
 public class BestAlbum {
     static class Music {
         int idx;
