@@ -6,9 +6,9 @@ import java.util.Queue;
 
 public class Greedy {
     public static void main(String[] args) {
-        int n = 13;
-        int[] stations = {2, 3};
-        int w = 5;
+        int n = 10;
+        int[] stations = {1, 3, 5, 7, 9};
+        int w = 1;
 
         int answer = 0;
 
