@@ -1,7 +1,5 @@
 # 프로젝트 제외 경로
 /out/
 /src/com/company/test/**
-/src/com/company/practice/programmers/lecture/CodeRunning/CodeReview.java
-/src/com/company/practice/programmers/lecture/CodeRunning/MiddleQ01.java
-/src/com/company/practice/programmers/lecture/CodeRunning/MiddleQ02.java
 /.idea/uiDesigner.xml
+/src/com/company/practice/programmers/lecture/CodeRunning/ignore/
