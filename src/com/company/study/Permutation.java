@@ -5,15 +5,6 @@ import java.util.stream.Collectors;
 
 public class Permutation {
     public static void main(String[] args) {
-        /*int[] items = {1, 2, 3, 4};
-        int[] bucket = new int[3];
-
-        dfs(items, bucket, 3);*/
-
-        /*char[] charItems = {'A', 'B', 'C', 'D'};
-        char[] charBucket = new char[4];
-
-        charDfs(charItems, charBucket, 4);*/
 
         String name = "ABCD";
         char[] charBucket = new char[3];
