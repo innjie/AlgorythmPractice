@@ -31,7 +31,7 @@ public class CodeReview {
             for(int j = 0; j < m; j++) {
                 System.out.print(dp[i][j]);
             }
-            System.out.println();
+            System.out.println();6
         }
         System.out.println(dp[n - 1][m - 1]);
 
