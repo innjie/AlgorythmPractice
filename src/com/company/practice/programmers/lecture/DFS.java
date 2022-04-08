@@ -38,6 +38,7 @@ public class DFS {
             stack.push(new P(p.open + 1, p.close));
             stack.push(new P(p.open, p.close + 1));
         }
+        System.out.println(answer);
     }
 
 
