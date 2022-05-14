@@ -1,5 +1,5 @@
 # 프로젝트 제외 경로
 /out/
-/src/com/company/test/**
-/.idea/uiDesigner.xml
-/src/com/company/practice/programmers/lecture/CodeRunning/ignore/**
+/src/com/company/test/**/
+/.idea/uiDesigner.xml/
+/src/com/company/practice/programmers/lecture/CodeRunning/ignore/**/
