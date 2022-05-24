@@ -1,38 +1,24 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        int N = 5; //스테이지 수
-        int[] stages = {2, 1, 2, 6, 2, 4, 3, 3}; //도전중인 스테이지 번호
+        int[] array = {1, 5, 2, 6, 3, 7, 4};
+        int[][] commands = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
 
-        int[] clear = new int[N + 1];
+        int[] answer = new int[commands.length];
+        int answerIdx = 0;
+        for(int[] command : commands) {
+            int start = command[0] - 1;
+            int end = command[1];
+            int position = command[2];
 
-        for(int i = 0; i < stages.length; i++) {
-            clear[stages[i] - 1]++;
-        }
-
-        List<double[]> stageList = new ArrayList<>();
-        int total = stages.length;
-        for(int i = 0; i < clear.length - 1; i++) {
-            if(clear[i] == 0) {
-                stageList.add(new double[] {i, 0});
-            } else {
-                stageList.add(new double[] {i, clear[i] / (double)total});
-            }
-            total -= clear[i];
-        }
-
-        stageList.sort((a, b) -> Double.compare(b[1], a[1]));
-
-        int[] answer = new int[N];
-        for(int i = 0; i < answer.length; i++) {
-            answer[i] = (int)stageList.get(i)[0] + 1;
-        }
-        for(int n : answer){
-            System.out.println(n);
+            int[] subArray = Arrays.copyOfRange(array, start, end);
+            Arrays.sort(subArray);
+            answer[answerIdx++] = subArray[position - 1];
         }
 
     }
