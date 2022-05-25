@@ -1,16 +1,25 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Main {
     static int total = 0;
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 4};
-        int[] bucket = new int[3];
-        pick(nums, bucket, bucket.length);
-        System.out.println(total);
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+
+        for(int i = 0; i < N; i++) {
+            int num = scanner.nextInt();
+            int[] scores = new int[num];
+            for(int j = 0; j < num; j++) {
+                scores[j] = scanner.nextInt();
+            }
+            int total = Arrays.stream(scores).sum();
+            int average = total / num;
+            int check = (int) Arrays.stream(scores).filter(s -> s > average).count();
+
+            System.out.println(String.format("%.3f", check / (double)num * 100) + "%");
+        }
     }
     public static void pick(int[] nums, int[] bucket, int k) {
         if(k == 0) {
