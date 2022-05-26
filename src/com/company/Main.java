@@ -6,20 +6,29 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        int[] array = {1, 5, 2, 6, 3, 7, 4};
-        int[][] commands = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
+        Scanner scan = new Scanner(System.in);
 
-        int[] answer = new int[commands.length];
-        int answerIdx = 0;
-        for(int[] command : commands) {
-            int start = command[0] - 1;
-            int end = command[1];
-            int position = command[2];
-
-            int[] subArray = Arrays.copyOfRange(array, start, end);
-            Arrays.sort(subArray);
-            answer[answerIdx++] = subArray[position - 1];
+        int testcase = scan.nextInt();
+        int[][] result = new int[testcase][3];
+        for(int i = 0; i < testcase; i++) {
+            result[i][0] = scan.nextInt();
+            result[i][1] = scan.nextInt();
+            result[i][2] = scan.nextInt();
         }
 
+        for(int i = 0; i < testcase; i++) {
+            System.out.println(room(result[i][0], result[i][1], result[i][2]));
+        }
+    }
+    public static int room(int H, int W, int n) {
+        int w = (n / H) + 1;
+        int h = (n % H);
+
+
+        if(n % H == 0) {
+            w--;
+            h = H;
+        }
+        return h * 100 + w;
     }
 }
