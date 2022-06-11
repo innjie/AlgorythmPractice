@@ -1,77 +1,51 @@
-package com.company;
+배열 내의 숫자를 임의로 3개를 뽑아 소수가 되는지 확인하는 작업이다. (중복 허용하지 않음)
+        따라서 이 문제를 배열 내 숫자 중 3개를 조합으로 뽑고, 소수를 판별하는 부분으로 나누어 풀었다.
+         
+        package com.company;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
+    static int total = 0;
     public static void main(String[] args) {
-
-
+        int[] nums = {1, 2, 3, 4};
+        int[] bucket = new int[3];
+        pick(nums, bucket, bucket.length);
+        System.out.println(total);
     }
-    public static int solution(int n, int[] lost, int[] reserve) {
-        int[][] result = new int[n][2];
-
-        //reserve와 lost의 경우 배열에 반영
-        for (int i = 0; i < reserve.length; i++) {
-            result[reserve[i] - 1][1]++;
-        }
-        for (int i = 0; i < lost.length; i++) {
-            result[lost[i] - 1][1]--;
-        }
-
-        for (int i = 0; i < lost.length; i++) {
-            // 맨앞, 뒤
-            if (lost[i] - 1 == 0) {
-                if (checkNext(lost, result, i)) {
-                    result[lost[i]][1]--;
-                    result[lost[i] - 1][1]++;
-                }
-            } else if (lost[i] - 1 == n - 1) {
-                if (checkFront(lost, result, i)) {
-                    result[lost[i] - 2][1]--;
-                    result[lost[i] - 1][1]++;
-                }
-
-            } else { //그 외
-                if (checkFront(lost, result, i) && result[lost[i] - 1][1] < 0) {
-                    result[lost[i] - 2][1]--;
-                    result[lost[i] - 1][1]++;
-                }
-                if (checkNext(lost, result, i) && result[lost[i] - 1][1] < 0) {
-                    result[lost[i]][1]--;
-                    result[lost[i] - 1][1]++;
-                }
-
+    //임의의 k개를 조합으로 뽑는 함수
+    //bucket의 길이만큼 뽑는다.
+    public static void pick(int[] nums, int[] bucket, int k) {
+        if(k == 0) {
+            if(isPrime(Arrays.stream(bucket).sum())) {
+                total++;
             }
-
+            return;
         }
-        int count = 0;
-        for (int i = 0; i < result.length; i++) {
-            if (result[i][1] >= 0) {
-                count++;
+
+        int lastIdx = bucket.length - k - 1;
+
+        for(int i = 0; i < nums.length; i++) {
+            if(bucket.length == k) {
+                bucket[0] = nums[i];
+                pick(nums, bucket, k - 1);
+            } else if(bucket[lastIdx] < nums[i]) {
+                bucket[lastIdx + 1] = nums[i];
+                pick(nums, bucket, k - 1);
             }
         }
 
-        return count;
     }
-
-    //내 위치 앞의 사람에게 여분이 있는지 검사
-    public static boolean checkFront(int[] lost, int[][] result, int i) {
-        if (result[lost[i] - 2][1] > 0) {
-            return true;
+    //소수 판별
+    //Math.sqrt를 활용하여 더 빠른 판별이 가능하다.
+    public static boolean isPrime(int n) {
+        for(int i = 2; i <= (int)Math.sqrt(n); i++) {
+            if(n % i == 0) {
+                return false;
+            }
         }
-        return false;
-
-    }
-
-    //내 위치 뒤의 사람에게 여분이 있는지 검사
-    public static boolean checkNext(int[] lost, int[][] result, int i) {
-        if (result[lost[i]][1] > 0) {
-            return true;
-        }
-        return false;
+        return true;
     }
 }
