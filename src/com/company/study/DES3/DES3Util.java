@@ -1,4 +1,4 @@
-package com.company.study;
+package com.company.study.DES3;
 
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
@@ -62,7 +62,7 @@ public class DES3Util {
         return text;
     }
     public static String util() {
-        String str = "자바킹";
+        String str = "{'rid': '90', 'loginid' : 'innjie', 'pwd' : 'innjie1!'}";
 
         String des3_en = DES3Util.encrypt(str);
         String des3_de = DES3Util.decrypt(des3_en);
