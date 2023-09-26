@@ -1,10 +1,9 @@
-package com.company.practice.baekjoon;
+package com.company.practice.baekjoon.사칙연산;
 
 import java.util.Scanner;
 
-public class Q2581 {
+public class Q1929 {
     public static boolean prime[];
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
@@ -12,13 +11,14 @@ public class Q2581 {
         int N = in.nextInt();
 
         prime = new boolean[N + 1];    // 배열 생성
-        get_prime();
+        get_prime(M);
 
         // 소수 합 및 최솟값
         int sum = 0;
         int min = Integer.MAX_VALUE;
         for (int i = M; i <= N; i++) {
             if (prime[i] == false) {    // false = 소수
+                System.out.println(i);
                 sum += i;
                 if (min == Integer.MAX_VALUE) {    // 첫 소수가 최솟값임
                     min = i;
@@ -29,12 +29,11 @@ public class Q2581 {
         if (sum == 0) {    // 소수가 없다면
             System.out.println(-1);
         } else {
-            System.out.println(sum);
-            System.out.println(min);
+
         }
     }
     // 에라토스테네스 체 알고리즘
-    public static void get_prime() {
+    public static void get_prime(int start) {
         prime[0] = true;
         prime[1] = true;
 

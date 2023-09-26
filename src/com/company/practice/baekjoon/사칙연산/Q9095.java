@@ -1,4 +1,4 @@
-package com.company.practice.baekjoon;
+package com.company.practice.baekjoon.사칙연산;
 import java.util.Scanner;
 
 public class Q9095 {
